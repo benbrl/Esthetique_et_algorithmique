@@ -1,4 +1,4 @@
-# figure3
+# figure1
 
 ## Getting Started
 
