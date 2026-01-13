@@ -12,10 +12,14 @@ La grille se lit **de haut en bas** et **de gauche à droite**.
 Pour changer l’emplacement utilisé par l’API, rendez-vous dans le fichier `api.js`.
 Vous pouvez :
 
-* décommenter ou commenter les premiers tests déjà présents ;
-* modifier les coordonnées **latitude / longitude** afin d’utiliser une localisation personnalisée.
+- décommenter ou commenter les premiers tests déjà présents ;
+- modifier les coordonnées **latitude / longitude** afin d’utiliser une localisation personnalisée.
 
 Pour lancer le projet, l’utilisation d’un **serveur local est obligatoire**, car l’application dépend d’une API externe.
+
+## Résulat
+
+![Résultat](image.png "Résultat")
 
 ## Démarrage rapide
 
@@ -38,5 +42,5 @@ npx http-server
 
 ## Ressources
 
-* [p5.js 2.0](https://beta.p5js.org/)
-* [Documentation p5.js](https://p5js.org/reference/)
+- [p5.js 2.0](https://beta.p5js.org/)
+- [Documentation p5.js](https://p5js.org/reference/)
