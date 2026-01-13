@@ -8,3 +8,7 @@ projet réalisé avec **p5.js**.
 ### Premier projet : Weather
 
 📁 `algorithmic_drawing/apres_midi/Weather`
+
+### Deuxieme projet : Order from chaos - cellular_automata
+
+📁 `cellular_automata`

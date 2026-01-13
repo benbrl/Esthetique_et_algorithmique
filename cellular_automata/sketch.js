@@ -1,66 +1,98 @@
-let width = window.innerWidth;
-let height = window.innerHeight;
-let dim_square = 10;
+const width = 800;
+const height = 800;
 
-let number_square_x;
-let number_square_y;
+const cols = width / 10;
+const rows = height / 10;
 
+const color_value = 4;
+const THRESHOLD = 3;
+
+let grid = [];
 function setup() {
-  createCanvas(800, 600);
-  background(220);
-  frameRate(1);
+  createCanvas(width, height);
+  frameRate(50);
 
-  number_square_x = Math.floor(width / dim_square);
-  number_square_y = Math.floor(height / dim_square);
-}
-
-const wave = {
-  x: 10,
-  y: 10,
-  color: "#06a0ff",
-  value: 10,
-};
-
-
-function draw_square(wave) {
-  const position_square_x = dim_square * wave.x;
-  const position_square_y = dim_square * wave.y;
-
-  fill(wave.color);
-  noStroke();
-  square(position_square_x, position_square_y, dim_square);
-
-  console.log(`ma super valuer la team : ${wave.value}`);
-  console.log(
-    `ma super poistion : ${position_square_x} , ${position_square_y}`
-  );
+  //display grid
+  for (let x = 0; x < cols; x++) {
+    grid[x] = [];
+    for (let y = 0; y < rows; y++) {
+      grid[x][y] = Math.floor(Math.random() * 4);
+    }
+  }
 }
 
 function draw() {
   background(220);
 
-  // Grid
-  for (let i = 0; i < number_square_x; i++) {
-    for (let j = 0; j < number_square_y; j++) {
-      stroke(1);
-      square(i * dim_square, j * dim_square, dim_square);
+  let next_grid = [];
+
+  for (let x = 0; x < cols; x++) {
+    next_grid[x] = [];
+    for (let y = 0; y < rows; y++) {
+      let state = grid[x][y];
+      let next_grid_state = (state + 1) % color_value;
+      let count = 0;
+
+      //check each value next to square to see if there is it matches the next state
+      for (let position_x = -1; position_x <= 1; position_x++) {
+        for (let position_y = -1; position_y <= 1; position_y++) {
+          // skip the current square himself
+          if (position_x === 0 && position_y === 0) continue;
+
+          // calculate the new position
+          let new_position_x = x + position_x;
+          let new_position_y = y + position_y;
+
+          // check if the new position is in the grid aera
+          if (
+            new_position_x >= 0 &&
+            new_position_x < cols &&
+            new_position_y >= 0 &&
+            new_position_y < rows
+          ) {
+            // if the square matches the next state increment the count
+            if (grid[new_position_x][new_position_y] === next_grid_state) {
+              count++;
+            }
+          }
+        }
+      }
+
+      // Rules (from original artwork): Adopt next state if at least THRESHOLD neighbors match it
+      if (count >= THRESHOLD) {
+        next_grid[x][y] = next_grid_state;
+      } else {
+        next_grid[x][y] = state;
+      }
     }
   }
 
-  draw_square(wave);
+  // update grid
+  for (let x = 0; x < cols; x++) {
+    for (let y = 0; y < rows; y++) {
+      grid[x][y] = next_grid[x][y];
+
+      draw_square(x, y, grid[x][y]);
+    }
+  }
 }
 
+function draw_square(position_square_x, position_square_y, value_square) {
+  const square_size = 10;
+  //value_square -> 1 or O
+  let value_to_color = value_square / (color_value - 1);
 
-function rules(square) {
-  let count = 0;
+  //The color I want is : rgb(0, 84, 97) so to change the 'opcaity' (this is not opacity but ok..)
+  // we change each values r,g,b
+  let r = 0 + (255 - 0) * value_to_color;
+  let g = 84 + (255 - 84) * value_to_color;
+  let b = 97 + (255 - 97) * value_to_color;
 
-  if (square.x - 1 >= 0) count++;
-  if (square.y - 1 >= 0) count++;
-  if (square.y + 1 < number_square_y) count++;
-
-  if (count >= 3) {
-    square.value = !square.value;
-  }
-
-  return square.value;
+  fill(r, g, b);
+  noStroke();
+  square(
+    position_square_x * square_size,
+    position_square_y * square_size,
+    square_size
+  );
 }

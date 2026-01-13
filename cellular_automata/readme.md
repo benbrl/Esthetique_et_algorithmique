@@ -29,6 +29,26 @@ Je refais l’implémentation avec un **tableau à deux dimensions**, ce qui est
 Je commit donc l’état actuel du projet, mais **de gros changements sont à prévoir**.
 Avant, j’utilisais deux tableaux, ce qui n’était **pas du tout optimisé** au final.
 
+
+Chaque case de la grille possède une valeur comprise entre 0 et 3. À chaque itération, la valeur d’une case peut changer en fonction de ses voisines :
+
+* Pour chaque case, le programme regarde ses 8 cases adjacentes.
+* Si au moins 3 de ces cases ont la valeur « suivante » par rapport à la case actuelle, alors la case adopte cette nouvelle valeur et change de couleur.
+* La valeur pivot utilisée pour déterminer la prochaine couleur est 3, comme indiqué dans la descritpinon de l'oeuvre originale.
+
+
+On peut donc s’apercevoir que si on change la valeur du seuil pour **4**, l’œuvre (ou la grille) va vite se figer, car il n’y a pas assez de voisines parallèles (c’est-à-dire de cellules voisines avec la valeur cible). À l’inverse, si on baisse ce seuil, la grille sera en mouvement constant (et creation de motifs differents). On peut donc trouver un bon compromis avec un seuil de **3**, qui permet un équilibre entre stabilité et dynamique.
+
+
+
+J’ai utilisé l’IA pour la rédaction du README (car très pratique pour le markdown et relecture) ainsi que pour m’aider à vérifier les valeurs des 8 cases adjacentes.
+
+
+## Résultat
+
+ ![Résultat](image.gif "Résultat") 
+
+
 ## Lancement du projet
 
 Pour lancer le projet, l’utilisation d’un **serveur local est obligatoire**, car l’application dépend d’une **API externe**.
@@ -52,15 +72,8 @@ npx http-server
 # Clic droit sur index.html -> "Open with Live Server"
 ```
 
+
 ## Ressources
 
 * [p5.js 2.0](https://beta.p5js.org/)
 * [Documentation p5.js](https://p5js.org/reference/)
-
----
-
-Si tu veux, je peux aussi te faire :
-
-* une version **plus fun / devlog**
-* une version **plus pro / portfolio**
-* ou t’aider à **formaliser les règles de l’automate** proprement (pseudo-code, schéma, etc.)
