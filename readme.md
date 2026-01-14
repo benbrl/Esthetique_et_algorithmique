@@ -14,3 +14,8 @@ projet réalisé avec **p5.js**.
 
 [📁 Cellular Automata](https://github.com/benbrl/Esthetique_et_algorithmique/tree/main/cellular_automata)
 ![Résultat](./cellular_automata/image.gif "Résultat")
+
+### Toisieme projet : Fractal Flowers
+
+[📁 Fractal Flowers](https://github.com/benbrl/Esthetique_et_algorithmique/tree/main/fractals)
+![Résultat](./fractals/flowers/image.gif "Résultat")
