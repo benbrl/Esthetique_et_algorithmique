@@ -13,4 +13,4 @@ projet réalisé avec **p5.js**.
 ### Deuxieme projet : Order from chaos - cellular_automata
 
 [📁 Cellular Automata](https://github.com/benbrl/Esthetique_et_algorithmique/tree/main/cellular_automata)
-![Résultat](./cellular_automata/image.gifimage.png "Résultat")
+![Résultat](./cellular_automata/image.gif "Résultat")
