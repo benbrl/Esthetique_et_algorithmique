@@ -46,6 +46,8 @@ function setup() {
     .add(params, "stroke_size", 1, 5, 0.5)
     .name("Épaisseur")
     .onChange(() => redraw());
+
+    noLoop();
 }
 
 
