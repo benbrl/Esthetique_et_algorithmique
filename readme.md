@@ -23,4 +23,4 @@ projet réalisé avec **p5.js**.
 ### Quatrieme projet : Ascii Poem
 
 [📁 Ascii Poem](https://github.com/benbrl/Esthetique_et_algorithmique/tree/main/digital_litterature)
-![Résultat](./digital_litterature/ascii_wiki/image.png "Résultat")
+![Résultat](./digital_litterature/ascii_poem/image.png "Résultat")
