@@ -108,6 +108,3 @@ document.getElementById("button").addEventListener("click", () => {
   speak.lang = "fr-FR";
   window.speechSynthesis.speak(speak);
 });
-
-// ${mots_de_fin[i]}
-// ${prenom[j]}`;
