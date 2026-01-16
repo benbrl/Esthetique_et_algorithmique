@@ -13,7 +13,7 @@ async function fetch_api_weather() {
     // const long =
 
     const response = await fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m&models=meteofrance_seamless`
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m&current=temperature_2m&models=meteofrance_seamless`
     );
 
     const temperature = await response.json();

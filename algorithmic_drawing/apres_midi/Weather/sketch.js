@@ -7,17 +7,8 @@ async function parsing_data() {
 
   const { time, temperature_2m } = temperatureData.hourly;
 
-  // Current time
-  const now = new Date();
-  //remove minute in order to the api works
-  now.setMinutes(0, 0, 0);
-
-  //rearranged the date
-  const current_hourISO = now.toISOString().substring(0, 13) + ":00";
-  const current_index = time.findIndex((t) => t.startsWith(current_hourISO));
-
-
-  const current_temperature = temperature_2m[current_index];
+  // current temperature directly from api
+  const current_temperature = temperatureData.current.temperature_2m;
 
   const day_temperatures = time.map((hour, index) => ({
     time: hour,
