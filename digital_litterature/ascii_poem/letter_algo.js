@@ -1,4 +1,13 @@
-const prenoms = ["Elouan", "Léna", "Jade", "Élea", "Alex", "Corentin", "Romane"];
+const prenoms = [
+  "Elouan",
+  "Léna",
+  "Jade",
+  "Élea",
+  "Alex",
+  "Corentin",
+  "Romane",
+  "Nawak",
+];
 
 const introductions = [
   "Chèr(e)",
