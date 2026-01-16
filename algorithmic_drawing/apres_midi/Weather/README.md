@@ -7,6 +7,9 @@ Au centre de l’interface se trouve la **température actuelle**.
 
 La grille se lit **de haut en bas** et **de gauche à droite**.
 
+Ce projet pourrait être amélioré pour qu’il soit un peu plus lisible et pratique à l’usage, tout en gardant son aspect créatif. On pourrait penser à ajouter le nom de la ville, ou l’heure actuelle / l’endroit où l’on se trouve dans la grille.
+Enfin, nous pourrions intégrer cela dans un cadre numérique / smart hub !
+
 ## Configuration de l’API
 
 Pour changer l’emplacement utilisé par l’API, rendez-vous dans le fichier `api.js`.

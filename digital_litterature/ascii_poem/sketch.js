@@ -8,45 +8,6 @@ let text_grid;
 let color_grid;
 let mask_gaphic;
 
-async function wikipedia_api() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const url = urlParams.get("title");
-
-  // si pas de paramètre, générer une lettre aléatoire
-  if (!url) {
-    const lettre = generer_lettre();
-    text_background = lettre.texte;
-    title = lettre.prenom;
-  } else {
-    //mettre en maj le texte
-    title = url.toUpperCase();
-
-    try {
-      const response = await fetch(
-        `https://fr.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
-          url
-        )}`
-      );
-      const wikipedia = await response.json();
-      console.log(wikipedia);
-
-      console.log(wikipedia.title);
-      console.log(wikipedia.extract);
-      if (wikipedia.extract) {
-        text_background = wikipedia.extract;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  // mettre à jour le texte en majuscules et le répéter
-  text_background = text_background.toUpperCase().repeat(20);
-
-  // réinitialiser avec le nouveau texte
-  initialize_grids();
-  create_mask();
-}
 
 async function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -75,6 +36,7 @@ function initialize_grids() {
     color_grid[row] = [];
     for (let col = 0; col < columns; col++) {
       text_grid[row][col] = text_background.charAt(
+        //quelle lettre prendre dans la phrase et ensuiter recommencer au début a la fin du texte
         charIndex % text_background.length
       );
       color_grid[row][col] = color(220); // gris clair
@@ -113,10 +75,10 @@ function draw() {
   }
 
   // dessiner le texte noir avec le mask
-   draw_masked_text();
+  draw_masked_text();
 }
 
-function  draw_masked_text() {
+function draw_masked_text() {
   // créer un graphics temporaire pour le texte noir
   let black_text_background = createGraphics(width, height);
   black_text_background.textFont("monospace");
@@ -140,11 +102,15 @@ function  draw_masked_text() {
   black_text_background.loadPixels();
   mask_gaphic.loadPixels();
 
+  // On parcourt les 4 canaux (rouge, vert, bleu, alpha) de chaque pixel
   for (let i = 0; i < black_text_background.pixels.length; i += 4) {
-    // si le pixel du masque est blanc, garder le texte noir sinon transparent
+    // Si le pixel du masque est sombre (valeur rouge < 128), rendre le texte transparent
+    // On regarde la composante rouge du pixel du masque
+    // Si la valeur rouge du masque est inférieure à 128, le pixel du texte devient transparent
     if (mask_gaphic.pixels[i] < 128) {
-      black_text_background.pixels[i + 3] = 0; // Alpha = 0 (transparent)
+      black_text_background.pixels[i + 3] = 0; // Alpha = 0 (transparent), car i+3 est le canal alpha
     }
+    // / / Sinon, le pixel du texte reste opaque (alpha reste inchangé)
   }
 
   black_text_background.updatePixels();

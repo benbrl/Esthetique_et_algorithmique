@@ -30,7 +30,7 @@ function draw() {
     next_grid[x] = [];
     for (let y = 0; y < rows; y++) {
       let state = grid[x][y];
-      let next_grid_state = (state + 1) % color_value;
+      let next_grid_state = (state + 1) % color_value; // Calculate the next state: increment by 1 and use modulo so that after reaching color_value - 1, it wraps back to 0.
       let count = 0;
 
       //check each value next to square to see if there is it matches the next state

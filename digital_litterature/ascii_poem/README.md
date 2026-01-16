@@ -1,5 +1,8 @@
 # ASCII Poem
 
+J'ai décidé de créer une œuvre qui génère des poèmes aléatoires via un algorithme ressemblant à Love Letters de Strachey. L'idée vient de faire ressortir le nom de la personne à qui le poème était adressé, mais en se rapprochant de pouvoir lire ce poème. Il y a aussi un veriosn avec une api permettant de lire le début d'article wikipedia.
+
+
 Ce projet propose **deux modes d’utilisation**.
 
 ## 1. Mode avec requête (`title`)
